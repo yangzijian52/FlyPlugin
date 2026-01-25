@@ -70,26 +70,7 @@ settings:
 | /flyreload     |flyplugin.admin   |重载配置文件|
 
 
-## 🛠️ 开发者指南
-### 项目结构
 
-src/
-
-├── main/
-
-│   ├── java/com/yourname/flyplugin/
-
-│   │   ├── Main.java
-
-│   │   ├── FlyCommand.java
-
-│   │   └── PlayerListener.java
-
-│   └── resources/
-
-│       ├── plugin.yml
-
-│       └── config.yml
 
 ## 💡 常见问题
 Q: 为什么无法扣费？
