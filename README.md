@@ -33,8 +33,9 @@
 
 - 当前已完成 26.1 依赖与 Java 25 构建升级
 - 已修正 `plugin.yml` 中 Vault 依赖声明
+- 已在 Paper 26.1.1 测试服中完成基础功能验证
 - 详细升级记录见 [docs/PAPER-26.1-UPGRADE.md](docs/PAPER-26.1-UPGRADE.md)
-- 建议在带经济插件的完整环境中进行服内实测
+- 已验证 `/flystart`、`/flystop`、`/flyreload` 以及退出时飞行状态处理
 
 ## 构建
 
