@@ -6,7 +6,7 @@
 
     <groupId>com.yourname</groupId>
     <artifactId>FlyPlugin</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>26.1.1.build.20-alpha</version>
+            <version>26.2.build.56-alpha</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

@@ -1,7 +1,7 @@
 name: FlyPlugin
 version: ${project.version}
 main: com.yourname.flyplugin.Main
-api-version: 1.21
+api-version: '26.2'
 depend: [Vault]
 commands:
   flystart:

@@ -4,8 +4,8 @@
 
 ## 当前版本
 
-- 插件版本：`1.1.1`
-- Paper API：`26.1.1.build.20-alpha`
+- 插件版本：`1.1.2`
+- Paper API：`26.2.build.56-alpha`
 - Java 要求：`25+`
 
 ## 主要功能
@@ -18,7 +18,7 @@
 
 ## 运行要求
 
-- Paper 26.1.x
+- Paper 26.2
 - Java 25+
 - Vault
 - 任意 Vault 兼容经济插件
@@ -31,11 +31,10 @@
 
 ## 当前状态
 
-- 当前已完成 26.1 依赖与 Java 25 构建升级
+- 当前已完成 Paper 26.2 依赖升级，并继续使用 Java 25 构建
 - 已修正 `plugin.yml` 中 Vault 依赖声明
-- 已在 Paper 26.1.1 测试服中完成基础功能验证
-- 详细升级记录见 [docs/PAPER-26.1-UPGRADE.md](docs/PAPER-26.1-UPGRADE.md)
-- 已验证 `/flystart`、`/flystop`、`/flyreload` 以及退出时飞行状态处理
+- 详细升级记录见 [docs/PAPER-26.2-UPGRADE.md](docs/PAPER-26.2-UPGRADE.md)
+- 本次升级仅更新 Paper API 与发布元数据；插件此前已能在 Paper 26.2 使用，因此未重复进行服内功能测试
 
 ## 构建
 
