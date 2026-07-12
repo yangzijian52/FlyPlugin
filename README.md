@@ -39,9 +39,6 @@
 ## SpigotMC 发布资料
 
 - [SpigotMC 正式资源页](https://www.spigotmc.org/resources/flyplugin.137012/)
-- [资源介绍页 BBCode](docs/SPIGOTMC-RESOURCE.md)
-- [完整文档 BBCode](docs/SPIGOTMC-RESOURCE-BBCODE.txt)
-- [SpigotMC 手动发布指南](docs/SPIGOTMC_MANUAL_PUBLISHING.md)
 - [版本变更记录](CHANGELOG.md)
 - [MIT License](LICENSE)
 
