@@ -1,0 +1,135 @@
+[CENTER][SIZE=7][B]FlyPlugin Documentation[/B][/SIZE]
+[SIZE=4]Installation, Commands, Billing, Configuration and Limits[/SIZE][/CENTER]
+
+[COLOR=#ff4d4d][B]Language notice:[/B][/COLOR] The SpigotMC resource page, documentation and support channel are English-only. Chinese-language support is not provided on SpigotMC.
+
+The plugin's in-game messages and default configuration comments are currently written in Chinese.
+
+[SIZE=5][B]Requirements[/B][/SIZE]
+
+[LIST]
+[*]Paper 26.2
+[*]Java 25 or newer
+[*]Vault
+[*]A Vault-compatible economy plugin
+[*]FlyPlugin 1.1.2
+[/LIST]
+
+Spigot compatibility is not claimed. Vault and the economy provider must load successfully before FlyPlugin can enable.
+
+[SIZE=5][B]Installation[/B][/SIZE]
+
+[LIST=1]
+[*]Stop the server.
+[*]Install Vault and a Vault-compatible economy plugin.
+[*]Place [B]FlyPlugin-1.1.2.jar[/B] in the server's [B]plugins[/B] directory.
+[*]Start the Paper 26.2 server with Java 25 or newer.
+[*]Confirm that Vault has registered an economy provider and that FlyPlugin enabled without an error.
+[*]Review [B]plugins/FlyPlugin/config.yml[/B] before allowing players to use paid flight.
+[*]Restrict [B]/flyreload[/B] externally if non-administrators must not reload the configuration.
+[/LIST]
+
+[SIZE=5][B]Player Commands[/B][/SIZE]
+
+[LIST]
+[*][B]/flystart[/B] - checks the balance, requests the first charge, enables flight and starts periodic billing
+[*][B]/flystop[/B] - cancels the active billing task and disables the player's flight permission
+[/LIST]
+
+[SIZE=5][B]Admin Commands[/B][/SIZE]
+
+[LIST]
+[*][B]/flyreload[/B] - reloads config.yml
+[/LIST]
+
+[COLOR=#ff4d4d][B]Warning:[/B][/COLOR] Version 1.1.2 does not enforce an administrator permission for [B]/flyreload[/B]. The command can be used by any command sender unless another server-side command restriction blocks it.
+
+[SIZE=5][B]Aliases[/B][/SIZE]
+
+No command aliases are declared in version 1.1.2.
+
+[SIZE=5][B]Permissions[/B][/SIZE]
+
+FlyPlugin 1.1.2 does not declare or check permission nodes. All three commands are available without a built-in permission requirement. If command access must be limited, use an external command restriction or permission-management solution that can block commands directly.
+
+[SIZE=5][B]Paid Flight Flow[/B][/SIZE]
+
+[LIST=1]
+[*]The player runs [B]/flystart[/B].
+[*]FlyPlugin rejects the request if that player already has an active paid-flight task.
+[*]The configured price is read from [B]settings.cost-per-minute[/B].
+[*]Vault is asked whether the player has at least that amount.
+[*]If the balance is sufficient, FlyPlugin requests the first withdrawal immediately.
+[*]Flight permission and active flying are enabled.
+[*]After 1,200 server ticks, and every 1,200 ticks afterward, the balance is checked and another withdrawal is requested.
+[*]If the balance is insufficient, paid flight is disabled.
+[*]Running [B]/flystop[/B] cancels billing and disables flight.
+[*]Disconnecting cancels billing. On the next join, FlyPlugin clears the flight state that it previously granted.
+[/LIST]
+
+Charges are prepaid and are not prorated. There is no refund for a partially used billing period. Billing uses server ticks, so severe server lag may make 1,200 ticks longer than 60 seconds of wall-clock time.
+
+[SIZE=5][B]Configuration File[/B][/SIZE]
+
+The default file is created at [B]plugins/FlyPlugin/config.yml[/B].
+
+[CODE]# Fly plugin configuration
+settings:
+  cost-per-minute: 0.1
+  charge-interval: 60
+  console-logging: true
+  auto-save-interval: 300[/CODE]
+
+[SIZE=5][B]Common Configuration Options[/B][/SIZE]
+
+[LIST]
+[*][B]settings.cost-per-minute[/B] - amount requested immediately and at every later billing cycle. Use a non-negative value supported by your economy provider.
+[*][B]settings.charge-interval[/B] - present in the default configuration, but version 1.1.2 does not currently use it. Billing remains fixed at 1,200 ticks.
+[*][B]settings.console-logging[/B] - enables or disables console messages for flight starts, repeated charges, disconnect cleanup and join reset.
+[*][B]settings.auto-save-interval[/B] - currently unused. FlyPlugin does not maintain a persistent player-data file.
+[/LIST]
+
+Running [B]/flyreload[/B] reloads the file. A paid-flight session that is already active keeps the price captured when that session started. Stop and restart the session to apply a changed price to that player.
+
+[SIZE=5][B]Data Storage and Backup[/B][/SIZE]
+
+FlyPlugin does not create a database or a plugin-owned player-data file. Active billing tasks and pending join resets exist only in server memory. Player balances are stored by the selected economy plugin, not by FlyPlugin.
+
+Before changing economy plugins or economy configuration, follow that provider's backup procedure. For FlyPlugin itself, back up [B]plugins/FlyPlugin/config.yml[/B]. No FlyPlugin data migration is required between versions 1.1.1 and 1.1.2.
+
+[SIZE=5][B]Upgrading[/B][/SIZE]
+
+[LIST=1]
+[*]Stop the server.
+[*]Back up [B]plugins/FlyPlugin/config.yml[/B] and the economy provider's data according to its documentation.
+[*]Remove older FlyPlugin jar variants so only one FlyPlugin jar will load.
+[*]Place [B]FlyPlugin-1.1.2.jar[/B] in the plugins directory.
+[*]Start Paper 26.2 with Java 25 or newer.
+[*]Check the console for successful Vault economy registration and FlyPlugin startup.
+[*]Review the configuration and test the economy provider on a non-production player account.
+[/LIST]
+
+[SIZE=5][B]Known Limits[/B][/SIZE]
+
+[LIST]
+[*]Paper 26.2 is the only claimed platform for this release.
+[*]No built-in command permissions or aliases are provided.
+[*]The billing interval is fixed at 1,200 ticks; [B]charge-interval[/B] is ignored.
+[*][B]auto-save-interval[/B] is unused because no plugin-owned player data is saved.
+[*]The Vault withdrawal response is not inspected after the balance check. Confirm correct behavior with the chosen economy provider before production use.
+[*]No refund is issued when flight stops before the next billing cycle.
+[*]Stopping or resetting paid flight sets [B]allowFlight[/B] and [B]flying[/B] to false, which may conflict with creative mode or other flight plugins.
+[*]Runtime messages and default configuration comments are in Chinese.
+[*]The startup log text still identifies itself as v1.0 even though plugin metadata reports 1.1.2.
+[*]No automated tests are included. The current artifact is Maven compile/package verified, without a new live-server test for the documentation update.
+[/LIST]
+
+[SIZE=5][B]Support[/B][/SIZE]
+
+[LIST]
+[*][URL=https://github.com/yangzijian52/FlyPlugin]Source Code[/URL]
+[*][URL=https://github.com/yangzijian52/FlyPlugin/releases]Downloads[/URL]
+[*][URL=https://github.com/yangzijian52/FlyPlugin/issues]Bug Reports and English Support[/URL]
+[/LIST]
+
+When reporting an issue, include the Paper build, Java version, FlyPlugin version, Vault version, economy plugin name and version, relevant configuration, and the complete error or transaction log. Do not post private economy data or credentials.

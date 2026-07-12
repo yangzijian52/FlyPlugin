@@ -36,6 +36,14 @@
 - 详细升级记录见 [docs/PAPER-26.2-UPGRADE.md](docs/PAPER-26.2-UPGRADE.md)
 - 本次升级仅更新 Paper API 与发布元数据；插件此前已能在 Paper 26.2 使用，因此未重复进行服内功能测试
 
+## SpigotMC 发布资料
+
+- [资源介绍页 BBCode](docs/SPIGOTMC-RESOURCE.md)
+- [完整文档 BBCode](docs/SPIGOTMC-RESOURCE-BBCODE.txt)
+- [SpigotMC 手动发布指南](docs/SPIGOTMC_MANUAL_PUBLISHING.md)
+- [版本变更记录](CHANGELOG.md)
+- [MIT License](LICENSE)
+
 ## 构建
 
 ```bash
