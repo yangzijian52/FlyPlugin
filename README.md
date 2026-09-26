@@ -4,8 +4,8 @@
 
 ## 当前版本
 
-- 插件版本：`1.1.2`
-- Paper API：`26.2.build.56-alpha`
+- 插件版本：`1.1.3`
+- Paper API：`26.3.build.41-alpha`
 - Java 要求：`25+`
 
 ## 主要功能
@@ -18,7 +18,7 @@
 
 ## 运行要求
 
-- Paper 26.2
+- Paper 26.3
 - Java 25+
 - Vault
 - 任意 Vault 兼容经济插件
@@ -31,10 +31,10 @@
 
 ## 当前状态
 
-- 当前已完成 Paper 26.2 依赖升级，并继续使用 Java 25 构建
+- 当前已完成 Paper 26.3 依赖升级，并继续使用 Java 25 构建
 - 已修正 `plugin.yml` 中 Vault 依赖声明
-- 详细升级记录见 [docs/PAPER-26.2-UPGRADE.md](docs/PAPER-26.2-UPGRADE.md)
-- 本次升级仅更新 Paper API 与发布元数据；插件此前已能在 Paper 26.2 使用，因此未重复进行服内功能测试
+- Paper 26.2 历史升级记录见 [docs/PAPER-26.2-UPGRADE.md](docs/PAPER-26.2-UPGRADE.md)；本次 26.3 候选版测试摘要见交付 Release Notes。
+- 已在 Paper 26.3 测试镜像完成启动、重启和四服并联回归；付费飞行交互仍需真人验收
 
 ## SpigotMC 发布资料
 

@@ -39,7 +39,7 @@ public class Main extends JavaPlugin {
 
         // 启动日志
         if (config.getBoolean("settings.console-logging")) {
-            getLogger().info("§a飞行插件 v1.0 已加载");
+            getLogger().info("§a飞行插件 v" + getDescription().getVersion() + " 已加载");
         }
     }
 
